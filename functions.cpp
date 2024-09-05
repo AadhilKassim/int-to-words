@@ -32,9 +32,32 @@ std::string numberToWords(long long int num)
 
         return numbersInTens[tens - 2] + " " + numbersBelow20[ones];
     }
+    
+    if (num >= 100 && num < 1000)
+    {
+        int hundreds = num/100;
+        int remainder = num%100;
+        int tens = (remainder)/10;
+        int ones = (remainder)%10;
+
+        if ((num%100) == 0 && tens == 0)
+        {
+            return numbersBelow20[hundreds] + " hundred";
+        }
+        else if ((num%100) < 20 )
+        {
+            return numbersBelow20[hundreds] + " hundred and " + numbersBelow20[remainder];
+        }
+        else
+        {
+            return numbersBelow20[hundreds] + " hundred and " + numbersInTens[tens - 2] + " " + numbersBelow20[ones];
+        }
+         
+    }
+    
 
     // for numbers from 1000 to 9999
-    if (num < 10000)
+    if (num < 10000 && num >= 1000)
     {
         int thousands = num / 1000;
         int remainder = num % 1000;
@@ -72,7 +95,7 @@ std::string numberToWords(long long int num)
     }
 
     //for numbers from 10000-99999
-    if (num<100000) //12345
+    if (num<100000 && num >= 1000) //12345
     {
         int thousands = num / 1000;
         int remainder = num % 1000;
