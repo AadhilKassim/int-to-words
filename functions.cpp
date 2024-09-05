@@ -36,34 +36,34 @@ std::string numberToWords(long long int num)
     // for numbers from 1000 to 9999
     if (num < 10000)
     {
-        int thousands = num / 1000; //2564
-        int remainder = num % 1000; //564
-        int hundreds = remainder / 100; //5
-        remainder = remainder % 100; //64
+        int thousands = num / 1000;
+        int remainder = num % 1000;
+        int hundreds = remainder / 100;
+        remainder = remainder % 100;
 
-        if (remainder == 0 && hundreds == 0)
+        if (remainder == 0 && hundreds == 0) //when the number is of type x000 eg:1000
         {
             return numbersBelow20[thousands] + " thousand"; 
         }
-        else if (remainder == 0)
+        else if (remainder == 0) //when the number is of type xx00 eg:3200
         {
             return numbersBelow20[thousands] + " thousand " + numbersBelow20[hundreds] + " hundred";
         }
-        else if (hundreds == 0 && remainder < 20)
+        else if (hundreds == 0 && remainder < 20) //when the number is of type x0xx with last two digits less than 20 eg:7519
         {
             return numbersBelow20[thousands] + " thousand and " + numbersBelow20[remainder];
         }
-        else if (hundreds == 0)
+        else if (hundreds == 0) //when the number is of type x0xx eg:1256
         {
             int tens = remainder / 10;
             int ones = remainder % 10;
             return numbersBelow20[thousands] + " thousand and " + numbersInTens[tens - 2] + (ones ? " " + numbersBelow20[ones] : "");
         }
-        else if (remainder < 20)
+        else if (remainder < 20) //when the number is of type xxxx with last two digits less than 20 eg:4611
         {
             return numbersBelow20[thousands] + " thousand " + numbersBelow20[hundreds] + " hundred and " + numbersBelow20[remainder];
         }
-        else
+        else //when number is of type xxxx eg:8987
         {
             int tens = remainder / 10;
             int ones = remainder % 10;
