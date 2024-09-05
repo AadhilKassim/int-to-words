@@ -71,5 +71,72 @@ std::string numberToWords(long long int num)
         }
     }
 
+    //for numbers from 10000-99999
+    if (num<100000) //12345
+    {
+        int thousands = num / 1000;
+        int remainder = num % 1000;
+        int hundreds = remainder / 100;
+        remainder = remainder % 100;
+
+        if (thousands < 20 && remainder == 0 && hundreds == 0)
+        {
+            return numbersBelow20[thousands] + " thousand"; 
+        }
+        else if (thousands >= 20 && remainder == 0 && hundreds == 0)
+        {
+            return numbersInTens[(thousands/10)-2] + " " + numbersBelow20[thousands%10] + " thousand";
+        }
+        else if (thousands < 20 && remainder == 0)
+        {
+            return numbersBelow20[thousands] + " thousand " + numbersBelow20[hundreds] + " hundred";
+        }
+        else if (thousands >= 20 && remainder == 0)
+        {
+            return numbersInTens[(thousands/10)-2] + " " + numbersBelow20[thousands%10] + " thousand " + numbersBelow20[hundreds] + " hundred";
+        }
+        else if (thousands < 20 && hundreds == 0 && remainder < 20)
+        {
+            return numbersBelow20[thousands] + " thousand and " + numbersBelow20[remainder];
+        }
+        else if (thousands >= 20 && hundreds == 0 && remainder < 20)
+        {
+            return numbersInTens[(thousands/10)-2] + " " + numbersBelow20[thousands%10] + " thousand and " + numbersBelow20[remainder];
+        }
+        else if (thousands < 20 && hundreds == 0)
+        {
+            int tens = remainder / 10;
+            int ones = remainder % 10;
+            return numbersBelow20[thousands] + " thousand and " + numbersInTens[tens - 2] + (ones ? " " + numbersBelow20[ones] : "");
+        }
+        else if (thousands >= 20 && hundreds == 0)
+        {
+            int tens = remainder / 10;
+            int ones = remainder % 10;
+            return numbersInTens[(thousands/10)-2] + " " + numbersBelow20[thousands%10] + " thousand and " + numbersInTens[tens - 2] + (ones ? " " + numbersBelow20[ones] : "");
+        }
+        else if (thousands < 20 && remainder < 20)
+        {
+            return numbersBelow20[thousands] + " thousand " + numbersBelow20[hundreds] + " hundred and " + numbersBelow20[remainder];
+        }
+        else if (thousands >= 20 && remainder < 20)
+        {
+            return numbersInTens[(thousands/10)-2] + " " + numbersBelow20[thousands%10] + " thousand " + numbersBelow20[hundreds] + " hundred and " + numbersBelow20[remainder];
+        }
+        else if (thousands >= 20)
+        {
+            int tens = remainder / 10;
+            int ones = remainder % 10;
+            return numbersInTens[(thousands/10)-2] + " " + numbersBelow20[thousands%10] + " thousand " + numbersBelow20[hundreds] + " hundred and " + numbersInTens[tens - 2] + (ones ? " " + numbersBelow20[ones] : "");
+        }
+        else
+        {
+            int tens = remainder / 10;
+            int ones = remainder % 10;
+            return numbersBelow20[thousands] + " thousand " + numbersBelow20[hundreds] + " hundred and " + numbersInTens[tens - 2] + (ones ? " " + numbersBelow20[ones] : "");
+        }
+    }
+    
+
     return "Couldn't handle such number";
 }
