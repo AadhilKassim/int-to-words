@@ -17,7 +17,7 @@ This C++ command-line application converts integers into their word representati
 ## Features
 
 - Supports **Indian Number System** (lakhs, crores, etc.).
-- Handles integers from 0 up to 99,99,99,999.
+<!-- Handles integers from 0 up to 99,99,99,999.-->
 - Efficiently breaks down numbers into logical units (units, tens, hundreds, thousands).
 - Modular code structure with clear separation of logic, functions, and prototypes.
 
