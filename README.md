@@ -111,9 +111,9 @@ Example:
 
 ## Future Enhancements
 
-- **Decimal Handling**: Add functionality to convert decimal numbers into words.
-- **Localization**: Extend support for other number systems or languages.
-- **Error Handling**: Improve input validation for non-integer inputs.
+-[] **Decimal Handling**: Add functionality to convert decimal numbers into words.
+-[] **Localization**: Extend support for other number systems or languages.
+-[] **Error Handling**: Improve input validation for non-integer inputs.
 
 ---
 
