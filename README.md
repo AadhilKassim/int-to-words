@@ -152,4 +152,4 @@ If you like this project, give it a ⭐️ on GitHub!
 
 ## Screenshots
 
-![CLI Example](./tencrores_screenshot.png)
+![CLI Example](./Screenshots/tencrores_screenshot.png)
