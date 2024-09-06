@@ -134,7 +134,7 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 👤 **Aadhil Kassim**
 
 - GitHub: [@AadhilKassim](https://github.com/AadhilKassim)
-- LinkedIn: [Aadhil Kassim](www.linkedin.com/in/aadhilkassim)
+- LinkedIn: [Aadhil Kassim](https://www.linkedin.com/in/aadhilkassim)
 
 ---
 
