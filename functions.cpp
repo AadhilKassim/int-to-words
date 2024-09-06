@@ -160,6 +160,272 @@ std::string numberToWords(long long int num)
         }
     }
     
+    // for numbers from 100000-999999
+    if (num < 1000000 && num >= 100000)
+    {
+        int lakhs = num / 100000;                    // Extract lakhs
+        int remainder = num % 100000;                 // Remainder after lakhs
+        int thousands = remainder / 1000;             // Extract thousands
+        int belowThousand = remainder % 1000;         // Remainder after thousands
+        int hundreds = belowThousand / 100;           // Extract hundreds
+        int tensAndOnes = belowThousand % 100;        // Extract tens and ones
+
+        std::string result = "";
+
+        // Handling lakhs
+        if (lakhs > 0)
+        {
+            result += numbersBelow20[lakhs] + " lakh";
+        }
+
+        // Handling thousands
+        if (thousands > 0)
+        {
+            if (!result.empty()) result += " "; // Add space if lakhs exist
+            if (thousands < 20)
+            {
+                result += numbersBelow20[thousands] + " thousand";
+            }
+            else
+            {
+                result += numbersInTens[(thousands / 10) - 2] + (thousands % 10 ? " " + numbersBelow20[thousands % 10] : "") + " thousand";
+            }
+        }
+
+        // Handling hundreds
+        if (hundreds > 0)
+        {
+            if (!result.empty()) result += " "; // Add space if lakhs or thousands exist
+            result += numbersBelow20[hundreds] + " hundred";
+        }
+
+        // Handling tens and ones (below 100)
+        if (tensAndOnes > 0)
+        {
+            if (!result.empty()) result += " and "; // Add "and" if lakhs, thousands, or hundreds exist
+            if (tensAndOnes < 20)
+            {
+                result += numbersBelow20[tensAndOnes];
+            }
+            else
+            {
+                result += numbersInTens[(tensAndOnes / 10) - 2] + (tensAndOnes % 10 ? " " + numbersBelow20[tensAndOnes % 10] : "");
+            }
+        }
+
+        return result;
+    }
+
+    // for numbers from 1000000-99999999 (10 lakhs to 99,99,999)
+    if (num >= 1000000 && num < 10000000)
+    {
+        int lakhs = num / 100000;                    // Extract the lakhs part (two digits)
+        int remainder = num % 100000;                // Remainder after lakhs
+        int thousands = remainder / 1000;            // Extract thousands
+        int belowThousand = remainder % 1000;        // Remainder after thousands
+        int hundreds = belowThousand / 100;          // Extract hundreds
+        int tensAndOnes = belowThousand % 100;       // Extract tens and ones
+
+        std::string result = "";
+
+        // Handling lakhs (both one and two-digit lakhs)
+        if (lakhs < 20) 
+        {
+            result += numbersBelow20[lakhs] + " lakh";
+        }
+        else
+        {
+            result += numbersInTens[(lakhs / 10) - 2] + (lakhs % 10 ? " " + numbersBelow20[lakhs % 10] : "") + " lakh";
+        }
+
+        // Handling thousands
+        if (thousands > 0)
+        {
+            result += " "; // Add space after lakhs
+            if (thousands < 20)
+            {
+                result += numbersBelow20[thousands] + " thousand";
+            }
+            else
+            {
+                result += numbersInTens[(thousands / 10) - 2] + (thousands % 10 ? " " + numbersBelow20[thousands % 10] : "") + " thousand";
+            }
+        }
+
+        // Handling hundreds
+        if (hundreds > 0)
+        {
+            result += " " + numbersBelow20[hundreds] + " hundred";
+        }
+
+        // Handling tens and ones (below 100)
+        if (tensAndOnes > 0)
+        {
+            result += " and "; // Add "and" if there are lakhs, thousands, or hundreds
+            if (tensAndOnes < 20)
+            {
+                result += numbersBelow20[tensAndOnes];
+            }
+            else
+            {
+                result += numbersInTens[(tensAndOnes / 10) - 2] + (tensAndOnes % 10 ? " " + numbersBelow20[tensAndOnes % 10] : "");
+            }
+        }
+
+        return result;
+    }
+
+    // for numbers from 10000000 to 999999999 (1 crore to 99,99,99,999)
+    if (num >= 10000000 && num < 1000000000)
+    {
+        int crores = num / 10000000;                 // Extract the crore part (two digits)
+        int remainder = num % 10000000;              // Remainder after crores
+        int lakhs = remainder / 100000;              // Extract the lakhs part
+        remainder = remainder % 100000;              // Remainder after lakhs
+        int thousands = remainder / 1000;            // Extract thousands
+        int belowThousand = remainder % 1000;        // Remainder after thousands
+        int hundreds = belowThousand / 100;          // Extract hundreds
+        int tensAndOnes = belowThousand % 100;       // Extract tens and ones
+
+        std::string result = "";
+
+        // Handling crores (both one and two-digit crores)
+        if (crores < 20)
+        {
+            result += numbersBelow20[crores] + " crore";
+        }
+        else
+        {
+            result += numbersInTens[(crores / 10) - 2] + (crores % 10 ? " " + numbersBelow20[crores % 10] : "") + " crore";
+        }
+
+        // Handling lakhs
+        if (lakhs > 0)
+        {
+            result += " "; // Add space after crores
+            if (lakhs < 20)
+            {
+                result += numbersBelow20[lakhs] + " lakh";
+            }
+            else
+            {
+                result += numbersInTens[(lakhs / 10) - 2] + (lakhs % 10 ? " " + numbersBelow20[lakhs % 10] : "") + " lakh";
+            }
+        }
+
+        // Handling thousands
+        if (thousands > 0)
+        {
+            result += " "; // Add space after lakhs
+            if (thousands < 20)
+            {
+                result += numbersBelow20[thousands] + " thousand";
+            }
+            else
+            {
+                result += numbersInTens[(thousands / 10) - 2] + (thousands % 10 ? " " + numbersBelow20[thousands % 10] : "") + " thousand";
+            }
+        }
+
+        // Handling hundreds
+        if (hundreds > 0)
+        {
+            result += " " + numbersBelow20[hundreds] + " hundred";
+        }
+
+        // Handling tens and ones (below 100)
+        if (tensAndOnes > 0)
+        {
+            result += " and "; // Add "and" if there are crores, lakhs, thousands, or hundreds
+            if (tensAndOnes < 20)
+            {
+                result += numbersBelow20[tensAndOnes];
+            }
+            else
+            {
+                result += numbersInTens[(tensAndOnes / 10) - 2] + (tensAndOnes % 10 ? " " + numbersBelow20[tensAndOnes % 10] : "");
+            }
+        }
+
+        return result;
+    }
+
+    // for numbers from 100000000 to 99999999999 (10 crores to 99,99,99,99,999)
+    if (num >= 100000000 && num < 100000000000)
+    {
+        int crores = num / 10000000;                // Extract the crore part (two digits)
+        int remainder = num % 10000000;             // Remainder after crores
+        int lakhs = remainder / 100000;             // Extract the lakhs part
+        remainder = remainder % 100000;             // Remainder after lakhs
+        int thousands = remainder / 1000;           // Extract thousands
+        int belowThousand = remainder % 1000;       // Remainder after thousands
+        int hundreds = belowThousand / 100;         // Extract hundreds
+        int tensAndOnes = belowThousand % 100;      // Extract tens and ones
+
+        std::string result = "";
+
+        // Handling crores (both one and two-digit crores)
+        if (crores < 20)
+        {
+            result += numbersBelow20[crores] + " crore";
+        }
+        else
+        {
+            result += numbersInTens[(crores / 10) - 2] + (crores % 10 ? " " + numbersBelow20[crores % 10] : "") + " crore";
+        }
+
+        // Handling lakhs
+        if (lakhs > 0)
+        {
+            result += " "; // Add space after crores
+            if (lakhs < 20)
+            {
+                result += numbersBelow20[lakhs] + " lakh";
+            }
+            else
+            {
+                result += numbersInTens[(lakhs / 10) - 2] + (lakhs % 10 ? " " + numbersBelow20[lakhs % 10] : "") + " lakh";
+            }
+        }
+
+        // Handling thousands
+        if (thousands > 0)
+        {
+            result += " "; // Add space after lakhs
+            if (thousands < 20)
+            {
+                result += numbersBelow20[thousands] + " thousand";
+            }
+            else
+            {
+                result += numbersInTens[(thousands / 10) - 2] + (thousands % 10 ? " " + numbersBelow20[thousands % 10] : "") + " thousand";
+            }
+        }
+
+        // Handling hundreds
+        if (hundreds > 0)
+        {
+            result += " " + numbersBelow20[hundreds] + " hundred";
+        }
+
+        // Handling tens and ones (below 100)
+        if (tensAndOnes > 0)
+        {
+            result += " and "; // Add "and" if there are crores, lakhs, thousands, or hundreds
+            if (tensAndOnes < 20)
+            {
+                result += numbersBelow20[tensAndOnes];
+            }
+            else
+            {
+                result += numbersInTens[(tensAndOnes / 10) - 2] + (tensAndOnes % 10 ? " " + numbersBelow20[tensAndOnes % 10] : "");
+            }
+        }
+
+        return result;
+    }
+
+
 
     return "Couldn't handle such number";
 }
